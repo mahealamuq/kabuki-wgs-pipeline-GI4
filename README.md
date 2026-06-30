@@ -119,7 +119,7 @@ FASTQ reads (NA12878 / HG001)
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/kabuki-wgs-pipeline.git
+git clone https://github.com/mahealamuq/kabuki-wgs-pipeline.git
 cd kabuki-wgs-pipeline
 ```
 
