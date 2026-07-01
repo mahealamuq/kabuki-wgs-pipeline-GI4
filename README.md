@@ -251,8 +251,17 @@ Picard MarkDuplicates flags reads that are PCR duplicates (identical read pairs 
 
 ### Step 7 · Indel Realignment
 
-**GATK4 (default):** handled internally by HaplotypeCaller — no separate step needed.  
-**GATK3 (optional):** set `GATK3\\\_JAR` in `config/pipeline.conf` and uncomment the GATK3 block.
+**GATK4 (Default)**
+
+GATK4 performs local reassembly within **HaplotypeCaller**, so a separate indel realignment step is **not required**.
+
+**GATK3 (Optional)**
+
+If you wish to use the legacy GATK3 indel realignment workflow, specify the location of the GATK3 JAR file in `config/pipeline.conf`:
+
+```bash
+GATK3_JAR="/path/to/GenomeAnalysisTK.jar"
+```
 
 ---
 
