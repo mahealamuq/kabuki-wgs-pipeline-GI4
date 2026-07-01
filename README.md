@@ -283,7 +283,22 @@ Three independent callers run in parallel for concordance comparison:
 |**GATK HaplotypeCaller**|Local de novo assembly|Gold standard for clinical WGS|
 
 > ⚠️ \\\*\\\*Ploidy:\\\*\\\* bcftools defaults to diploid. Use `--ploidy GRCh37` for correct chrX calls in biological males (hemizygous).
+### Steps 9–11 · Variant Calling
 
+To improve confidence in detected variants, the pipeline performs variant calling using **three independent algorithms**. Comparing the results helps identify high-confidence variants that are consistently detected across multiple callers.
+
+| Variant Caller | Method | Description |
+|----------------|--------|-------------|
+| **bcftools** | Pileup-based | Fast and conservative variant calling using sequence pileups and likelihood models. |
+| **FreeBayes** | Haplotype-based | Detects variants using local haplotype reconstruction and offers improved sensitivity for small insertions and deletions (indels). |
+| **GATK HaplotypeCaller** | Local de novo assembly | Performs local reassembly of reads around candidate variants and is widely regarded as the gold standard for germline variant discovery. |
+
+> [!IMPORTANT]
+> **Ploidy Considerations**
+>
+> By default, **bcftools** assumes diploid genotypes for all chromosomes. When analysing **chromosome X** in **male samples**, the correct ploidy should be specified because males are **hemizygous** for chromosome X.
+>
+> Use an appropriate ploidy definition (for example, `--ploidy GRCh37` or a custom ploidy file) to ensure accurate genotype calling.
 ---
 
 ### Step 12 · Caller Concordance
