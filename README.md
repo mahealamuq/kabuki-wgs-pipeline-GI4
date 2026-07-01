@@ -1,17 +1,16 @@
-# 🧬 kabuki-wgs-pipeline
 
-**A reproducible whole-genome sequencing pipeline for detecting disease-causing variants in Kabuki syndrome**
+# 🧬 Kabuki WGS Pipeline
 
-[!\[License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[!\[Shell](https://img.shields.io/badge/Shell-Bash-blue.svg)](pipeline.sh)
-[!\[Genome](https://img.shields.io/badge/Reference-GRCh37/hg19-green.svg)](https://genome.ucsc.edu)
-[!\[Conda](https://img.shields.io/badge/Install-conda-brightgreen.svg)](environment.yml)
+### A reproducible whole-genome sequencing pipeline for detecting disease-causing variants associated with Kabuki syndrome
 
-Detects variants in **KMT2D** (chr12) and **KDM6A** (chrX) using three independent callers,
-functional annotation with snpEff, and novel-variant filtering — all from a single bash script.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Shell](https://img.shields.io/badge/Shell-Bash-blue.svg)](pipeline.sh)
+[![Reference Genome](https://img.shields.io/badge/Reference-GRCh37%20%7C%20hg19-green.svg)](https://genome.ucsc.edu/)
+[![Conda](https://img.shields.io/badge/Install-Conda-brightgreen.svg)](environment.yml)
+
+</div>
 
 ---
-
 ## Table of Contents
 
 * [Background](#-background)
