@@ -152,7 +152,7 @@ snpEff download GRCh37.75
 ## 🚀 Usage
 
 ```bash
-conda activate kabuki-wgs
+chmod +x kabuki_wgs_pipeline.sh
 bash kabuki_wgs_pipeline.sh
 ```
 
