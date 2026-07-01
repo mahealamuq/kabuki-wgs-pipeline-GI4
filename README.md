@@ -131,7 +131,7 @@ FASTQ reads (NA12878 / HG001)
 
 ```bash
 git clone https://github.com/mahealamuq/kabuki-wgs-pipeline-GI4.git
-cd kabuki-wgs-pipeline
+cd kabuki-wgs-pipeline-GI4/
 ```
 
 ### 2\. Create conda environment
