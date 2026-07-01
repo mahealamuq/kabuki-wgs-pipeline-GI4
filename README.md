@@ -141,12 +141,6 @@ conda env create -f environment.yml
 conda activate kabuki-wgs
 ```
 
-### 3\. Download snpEff database (one-time, \~1.5 GB)
-
-```bash
-snpEff download GRCh37.75
-```
-
 ---
 
 ## 🚀 Usage
@@ -164,15 +158,21 @@ bash kabuki_wgs_pipeline.sh --workdir /data/my-analysis
 bash kabuki_wgs_pipeline.sh --threads 8 --workdir /data/out
 ```
 
-**Bring your own reads** — place FASTQs here and the download step is skipped:
+## 📥 Using Your Own Sequencing Data
 
+If you already have paired-end FASTQ files, place them in the `data` directory before running the pipeline. The pipeline will automatically detect these files and **skip the download step**.
+
+```text
+kabuki-wgs-output/
+└── data/
+    ├── patientA_1.fq.gz
+    ├── patientA_2.fq.gz
+    ├── patientB_1.fq.gz
+    └── patientB_2.fq.gz
 ```
-kabuki-wgs-output/data/
-├── patientA\\\_1.fq.gz
-├── patientA\\\_2.fq.gz
-├── patientB\\\_1.fq.gz
-└── patientB\\\_2.fq.gz
-```
+
+> [!TIP]
+> If all four FASTQ files are present, the pipeline assumes the sequencing data are already available locally and proceeds directly to the alignment step, bypassing the automatic download.
 
 ---
 
