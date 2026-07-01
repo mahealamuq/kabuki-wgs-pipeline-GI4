@@ -272,17 +272,6 @@ GATK3_JAR="/path/to/GenomeAnalysisTK.jar"
 
 ---
 
-### Steps 9–11 · Variant Calling (three callers)
-
-Three independent callers run in parallel for concordance comparison:
-
-|Caller|Approach|Notes|
-|-|-|-|
-|**bcftools**|Pileup + multinomial likelihood|Fast, conservative|
-|**freebayes**|Haplotype-based|Better indel sensitivity|
-|**GATK HaplotypeCaller**|Local de novo assembly|Gold standard for clinical WGS|
-
-> ⚠️ \\\*\\\*Ploidy:\\\*\\\* bcftools defaults to diploid. Use `--ploidy GRCh37` for correct chrX calls in biological males (hemizygous).
 ### Steps 9–11 · Variant Calling
 
 To improve confidence in detected variants, the pipeline performs variant calling using **three independent algorithms**. Comparing the results helps identify high-confidence variants that are consistently detected across multiple callers.
