@@ -113,9 +113,15 @@ FASTQ reads (NA12878 / HG001)
 |[snpEff + SnpSift](https://pcingola.github.io/SnpEff)|5.1 / 5.3|Annotation and filtering|
 |[htslib](https://www.htslib.org)|1.17|tabix + bgzip|
 
-> \\\*\\\*Java note:\\\*\\\* GATK4 requires Java 17. SnpSift 5.3+ requires Java 21. The pipeline auto-detects a compatible Java binary for each tool independently, so both work even when the conda environment pins Java to 17.
+> **Java Note:**  
+> GATK 4 requires **Java 17**, while **SnpSift 5.3+** requires **Java 21**.  
+> The pipeline automatically detects and uses a compatible Java installation for each tool, allowing both applications to run correctly even when the Conda environment uses Java 17.
 
-**System:** Linux · 8 GB RAM minimum · \~5 GB disk space
+**System Requirements**
+
+- **Operating System:** Linux
+- **Memory:** Minimum 8 GB RAM (16 GB recommended)
+- **Disk Space:** Approximately 5 GB (excluding downloaded datasets)
 
 ---
 
