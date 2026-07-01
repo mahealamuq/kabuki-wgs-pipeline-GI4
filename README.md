@@ -134,8 +134,8 @@ Generated files are not stored in the repository. The pipeline creates them auto
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/kabuki-syndrome-wgs-variant-analysis.git
-cd kabuki-syndrome-wgs-variant-analysis
+git clone https://github.com/mahealamuq/kabuki-wgs-pipeline-GI4.git
+cd kabuki-wgs-pipeline-GI4
 ```
 
 ### 2. Create the conda environment
