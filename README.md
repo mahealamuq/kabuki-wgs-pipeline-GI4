@@ -203,9 +203,10 @@ kabuki-wgs-output/
 
 ### Step 2 · Reference Genome
 
-Downloads chr12 and chrX from UCSC hg19 (\~88 MB compressed), merges them, and builds BWA, samtools, and Picard indexes.
+Downloads **chromosome 12 (chr12)** and **chromosome X (chrX)** from the **UCSC hg19 (GRCh37)** reference genome, merges the two chromosomes into a single reference FASTA file, and builds the required indexes for **BWA**, **samtools**, and **Picard**.
 
-> Using only chr12 and chrX reduces the reference from \\\~3 GB to \\\~550 MB with no loss of accuracy for KMT2D and KDM6A.
+> [!TIP]
+> Using only **chr12** and **chrX** reduces the reference genome size from approximately **3 GB** to **550 MB** without affecting the analysis, as the pipeline focuses exclusively on the **KMT2D** and **KDM6A** genes located on these chromosomes.
 
 ---
 
