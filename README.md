@@ -21,8 +21,8 @@
 * [Usage](#-usage)
 * [Pipeline Steps](#-pipeline-steps)
 * [Output Files](#-output-files)
-* [Configuration](#-configuration)
-* [Pipeline Performance](#-pipeline-performance)
+* [Configuration](#configuration)
+* [Pipeline Performance](#pipeline-performance)
 * [References](#-references)
 
 ---
