@@ -25,7 +25,7 @@
 * [Troubleshooting](#-troubleshooting)
 * [References](#-references)
 
-\---
+---
 
 ## 🔬 Background
 
@@ -41,7 +41,7 @@
 
 Most causative variants are **de novo** — absent from population databases — which is the key insight behind the filtering strategy: after calling all variants, those with a dbSNP rsID are removed, leaving only novel candidates.
 
-\---
+---
 
 ## 🔄 Pipeline Overview
 
@@ -97,7 +97,7 @@ FASTQ reads (NA12878 / HG001)
     candidates.vcf  +  vep\\\_submission.vcf
 ```
 
-\---
+---
 
 ## 📦 Requirements
 
@@ -117,7 +117,7 @@ FASTQ reads (NA12878 / HG001)
 
 **System:** Linux · 8 GB RAM minimum · \~5 GB disk space
 
-\---
+---
 
 ## ⚡ Installation
 
@@ -141,7 +141,7 @@ conda activate kabuki-wgs
 snpEff download GRCh37.75
 ```
 
-\---
+---
 
 ## 🚀 Usage
 
@@ -168,7 +168,7 @@ kabuki-wgs-output/data/
 └── patientB\\\_2.fq.gz
 ```
 
-\---
+---
 
 ## 🔍 Pipeline Steps
 
@@ -176,7 +176,7 @@ kabuki-wgs-output/data/
 
 Checks all required tools are on `PATH`. Then independently locates a compatible Java binary for both SnpSift (requires Java 21) and snpEff (may also require Java 21), separate from the default `java` used by GATK4 (requires Java 17). This solves the common conflict where a conda environment can only hold one Java version at a time.
 
-\---
+---
 
 ### Step 1 · Directory Setup
 
@@ -193,7 +193,7 @@ kabuki-wgs-output/
 └── logs/
 ```
 
-\---
+---
 
 ### Step 2 · Reference Genome
 
@@ -201,7 +201,7 @@ Downloads chr12 and chrX from UCSC hg19 (\~88 MB compressed), merges them, and b
 
 > Using only chr12 and chrX reduces the reference from \\\~3 GB to \\\~550 MB with no loss of accuracy for KMT2D and KDM6A.
 
-\---
+---
 
 ### Step 3 · Input Reads
 
@@ -214,7 +214,7 @@ Streams NA12878 (HG001) reads for only the KMT2D and KDM6A regions (\~50–100 M
 |*KMT2D*|chr12:49,400,000–49,500,000|Kabuki type 1|
 |*KDM6A*|chrX:44,900,000–45,100,000|Kabuki type 2|
 
-\---
+---
 
 ### Step 4 · Alignment — BWA MEM
 
@@ -223,33 +223,33 @@ bwa mem -t 4 -R "@RG\\\\tID:patientA\\\\tSM:patientA\\\\tPL:ILLUMINA\\\\tLB:lib1
   hg19\\\_chr12\\\_chrX.fasta patientA\\\_1.fq.gz patientA\\\_2.fq.gz > patientA.sam
 ```
 
-\---
+---
 
 ### Step 5 · SAM → Sorted BAM
 
 Converts, coordinate-sorts, and indexes the alignment. The original SAM is deleted to save disk space.
 
-\---
+---
 
 ### Step 6 · PCR Duplicate Marking
 
 Picard MarkDuplicates flags reads that are PCR duplicates (identical read pairs from the same original DNA molecule) so variant callers can exclude them from allele frequency calculations.
 
-\---
+---
 
 ### Step 7 · Indel Realignment
 
 **GATK4 (default):** handled internally by HaplotypeCaller — no separate step needed.  
 **GATK3 (optional):** set `GATK3\\\_JAR` in `config/pipeline.conf` and uncomment the GATK3 block.
 
-\---
+---
 
 ### Step 8 · Alignment QC
 
 `samtools idxstats` — mapped reads per chromosome  
 `samtools flagstat` — total reads, duplicate rate, mapping rate, pairing statistics
 
-\---
+---
 
 ### Steps 9–11 · Variant Calling (three callers)
 
@@ -263,7 +263,7 @@ Three independent callers run in parallel for concordance comparison:
 
 > ⚠️ \\\*\\\*Ploidy:\\\*\\\* bcftools defaults to diploid. Use `--ploidy GRCh37` for correct chrX calls in biological males (hemizygous).
 
-\---
+---
 
 ### Step 12 · Caller Concordance
 
@@ -275,7 +275,7 @@ Jaccard = |intersection| / |union|   (0 = no overlap, 1 = perfect agreement)
 
 A full three-way intersection table is written to `caller\\\_comparison.txt`.
 
-\---
+---
 
 ### Step 13 · dbSNP Annotation
 
@@ -286,7 +286,7 @@ Tags each variant with a dbSNP rsID if it appears in the population database. Tw
 
 Variants with rsIDs are known in the general population and unlikely to be the sole cause of a rare de novo disease.
 
-\---
+---
 
 ### Step 14 · Functional Annotation — snpEff
 
@@ -299,7 +299,7 @@ Predicts the consequence of each variant on every overlapping transcript:
 |🟢 **LOW**|Synonymous|Unlikely to affect protein|
 |⚪ **MODIFIER**|Intronic, UTR|No direct protein effect|
 
-\---
+---
 
 ### Step 15 · Candidate Filtering
 
@@ -315,7 +315,7 @@ cat snpeff.vcf | vcfEffOnePerLine.pl \\\\
 |`na ID`|No rsID — novel, absent from population databases|
 |`QUAL > 30`|≥ 99.9% confidence (Phred scale)|
 
-\---
+---
 
 ### Step 16 · VEP Submission
 
@@ -329,7 +329,7 @@ Generates `results/vep\\\_submission.vcf` for cross-referencing:
 |[ClinVar](https://www.ncbi.nlm.nih.gov/clinvar)|Clinical significance|
 |[OMIM](https://www.omim.org)|Disease–gene association|
 
-\---
+---
 
 ## 📂 Output Files
 
@@ -351,7 +351,7 @@ results/patientA/
 results/vep\\\_submission.vcf            ← paste into Ensembl VEP
 ```
 
-\---
+---
 
 ## ⚙️ Configuration
 
@@ -368,7 +368,7 @@ WORKDIR="/data/my-analysis"            # output directory
 # GATK3\\\_JAR="/opt/GATK3/GenomeAnalysisTK.jar"
 ```
 
-\---
+---
 
 ## 🛠️ Troubleshooting
 
@@ -431,7 +431,7 @@ snpEff download GRCh37.75
 
 </details>
 
-\---
+---
 
 ## 📚 References
 
@@ -445,7 +445,7 @@ snpEff download GRCh37.75
 |Kabuki syndrome|Ng SB et al. (2010). *Nature Genetics* 42:790–793|
 |NA12878 / GIAB|Zook JM et al. (2014). *Nature Biotechnology* 32:246–251|
 
-\---
+---
 
 ## 📄 License
 
