@@ -130,7 +130,7 @@ FASTQ reads (NA12878 / HG001)
 ### 1\. Clone
 
 ```bash
-git clone https://github.com/YOUR\\\_USERNAME/kabuki-wgs-pipeline.git
+git clone https://github.com/mahealamuq/kabuki-wgs-pipeline-GI4.git
 cd kabuki-wgs-pipeline
 ```
 
@@ -153,15 +153,15 @@ snpEff download GRCh37.75
 
 ```bash
 conda activate kabuki-wgs
-bash pipeline.sh
+bash kabuki_wgs_pipeline.sh
 ```
 
 **Options:**
 
 ```bash
-bash pipeline.sh --threads 8
-bash pipeline.sh --workdir /data/my-analysis
-bash pipeline.sh --threads 8 --workdir /data/out
+bash kabuki_wgs_pipeline.sh --threads 8
+bash kabuki_wgs_pipeline.sh --workdir /data/my-analysis
+bash kabuki_wgs_pipeline.sh --threads 8 --workdir /data/out
 ```
 
 **Bring your own reads** — place FASTQs here and the download step is skipped:
