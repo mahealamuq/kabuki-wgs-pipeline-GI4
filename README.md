@@ -226,8 +226,13 @@ Streams NA12878 (HG001) reads for only the KMT2D and KDM6A regions (\~50–100 M
 ### Step 4 · Alignment — BWA MEM
 
 ```bash
-bwa mem -t 4 -R "@RG\\\\tID:patientA\\\\tSM:patientA\\\\tPL:ILLUMINA\\\\tLB:lib1" \\\\
-  hg19\\\_chr12\\\_chrX.fasta patientA\\\_1.fq.gz patientA\\\_2.fq.gz > patientA.sam
+bwa mem \
+    -t 4 \
+    -R "@RG\tID:patientA\tSM:patientA\tPL:ILLUMINA\tLB:lib1" \
+    hg19_chr12_chrX.fasta \
+    patientA_1.fq.gz \
+    patientA_2.fq.gz \
+    > patientA.sam
 ```
 
 ---
