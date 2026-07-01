@@ -1,5 +1,3 @@
-<div align="center">
-
 # 🧬 kabuki-wgs-pipeline
 
 **A reproducible whole-genome sequencing pipeline for detecting disease-causing variants in Kabuki syndrome**
@@ -12,9 +10,7 @@
 Detects variants in **KMT2D** (chr12) and **KDM6A** (chrX) using three independent callers,
 functional annotation with snpEff, and novel-variant filtering — all from a single bash script.
 
-</div>
-
-\---
+---
 
 ## Table of Contents
 
