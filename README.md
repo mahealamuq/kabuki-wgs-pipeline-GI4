@@ -290,15 +290,34 @@ To improve confidence in detected variants, the pipeline performs variant callin
 > Use an appropriate ploidy definition (for example, `--ploidy GRCh37` or a custom ploidy file) to ensure accurate genotype calling.
 ---
 
-### Step 12 · Caller Concordance
+### Step 12 · Variant Caller Concordance
 
-Measures agreement between callers using the **Jaccard statistic**:
+To assess the consistency of variant detection, the pipeline compares the variant sets produced by **bcftools**, **FreeBayes**, and **GATK HaplotypeCaller**.
 
+Agreement between callers is evaluated using the **Jaccard statistic**, which measures the similarity between two sets of variants.
+
+```text
+Jaccard Index = |Intersection| / |Union|
+
+0 = No shared variants
+1 = Perfect agreement between callers
 ```
-Jaccard = |intersection| / |union|   (0 = no overlap, 1 = perfect agreement)
+
+The pipeline also generates a comprehensive three-way comparison of all variant callers, including:
+
+- Total variants detected by each caller
+- Shared variants between callers
+- Unique variants identified by each caller
+- Pairwise Jaccard similarity statistics
+
+The comparison results are written to:
+
+```text
+results/patientA/patientA.caller_comparison.txt
+results/patientB/patientB.caller_comparison.txt
 ```
 
-A full three-way intersection table is written to `caller\\\_comparison.txt`.
+These reports provide an overview of concordance between variant callers and help assess the reliability of detected variants before downstream annotation and filtering.
 
 ---
 
